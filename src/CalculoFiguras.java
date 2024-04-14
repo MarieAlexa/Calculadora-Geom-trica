@@ -1,9 +1,15 @@
 import java.util.Scanner;
 public class CalculoFiguras {
 
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        double[] resultados = new double[100];
+        int contadorResultados = 0;
+
+        boolean continuar = true;
+        while (continuar) {
         int opcionFigura;
         do {
             System.out.println("Elija la figura geométrica:");
@@ -12,9 +18,11 @@ public class CalculoFiguras {
             System.out.println("3. Triángulo");
             System.out.println("4. Rectángulo");
             System.out.println("5. Pentágono");
+            System.out.println("6. SALIR");
             System.out.print("Opción: ");
             opcionFigura = scanner.nextInt();
-        } while (opcionFigura < 1 || opcionFigura > 5);
+        } while (opcionFigura < 1 || opcionFigura > 6);
+
 
         int opcionOperacion;
         do {
@@ -25,7 +33,7 @@ public class CalculoFiguras {
             opcionOperacion = scanner.nextInt();
         } while (opcionOperacion < 1 || opcionOperacion > 2);
 
-        double resultado ;
+            double resultado = 0;
 
         switch (opcionFigura) {
             case 1:
@@ -79,15 +87,15 @@ public class CalculoFiguras {
                     double base = scanner.nextDouble();
                     System.out.print("Altura: ");
                     double altura = scanner.nextDouble();
-                    resultado = base * altura;
-                    System.out.println("Área del rectangulo: " + resultado);
+                    resultado = 2 * (base + altura);
+                    System.out.println("Perímetro del rectangulo: " + resultado);
                 } else {
                     System.out.print("Base: ");
                     double base = scanner.nextDouble();
                     System.out.print("Altura: ");
                     double altura = scanner.nextDouble();
-                    resultado = 2 * (base + altura);
-                    System.out.println("Perímetro del rectangulo: " + resultado);
+                    resultado = base * altura;
+                    System.out.println("Área del rectangulo: " + resultado);
                 }
                 break;
             case 5:
@@ -104,14 +112,33 @@ public class CalculoFiguras {
                     resultado = 5 * lado;
                     System.out.println("Perímetro del pentágono: " + resultado);
                 }
-                    break;
+                break;
 
-                    default:
-                        System.out.println("Opción inválida.");
-                }
-
-
-
+            default:
+                System.out.println("Opción inválida.");
         }
 
+            resultados[contadorResultados] = resultado;
+            contadorResultados++;
+
+            if (opcionFigura != 6) {
+                System.out.print("¿Desea realizar otra operación? (Sí/No): ");
+                String respuesta = scanner.next();
+                if (!respuesta.equalsIgnoreCase("Sí") && !respuesta.equalsIgnoreCase("Si")) {
+                    continuar = false;
+                }
+            }
+        }
+
+        System.out.println("\nResultados:");
+        for (int i = 0; i < contadorResultados; i++) {
+            System.out.println("Resultado " + (i + 1) + ": " + resultados[i]);
+        }
+
+        scanner.close();
+
+
     }
+}
+
+
