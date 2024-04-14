@@ -5,11 +5,6 @@ public class CalculoFiguras {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double[] resultados = new double[100];
-        int contadorResultados = 0;
-
-        boolean continuar = true;
-        while (continuar) {
         int opcionFigura;
         do {
             System.out.println("Elija la figura geométrica:");
@@ -33,7 +28,7 @@ public class CalculoFiguras {
             opcionOperacion = scanner.nextInt();
         } while (opcionOperacion < 1 || opcionOperacion > 2);
 
-            double resultado = 0;
+            double resultado;
 
         switch (opcionFigura) {
             case 1:
@@ -118,26 +113,7 @@ public class CalculoFiguras {
                 System.out.println("Opción inválida.");
         }
 
-            resultados[contadorResultados] = resultado;
-            contadorResultados++;
-
-            if (opcionFigura != 6) {
-                System.out.print("¿Desea realizar otra operación? (Sí/No): ");
-                String respuesta = scanner.next();
-                if (!respuesta.equalsIgnoreCase("Sí") && !respuesta.equalsIgnoreCase("Si")) {
-                    continuar = false;
-                }
-            }
-        }
-
-        System.out.println("\nResultados:");
-        for (int i = 0; i < contadorResultados; i++) {
-            System.out.println("Resultado " + (i + 1) + ": " + resultados[i]);
-        }
-
-        scanner.close();
-
-
+        
     }
 }
 
